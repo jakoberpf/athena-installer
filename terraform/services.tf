@@ -5,12 +5,15 @@ module "zelos_system_service_external_secrets" {
 }
 
 module "zelos_system_service_cert_manager" {
-  source            = "jakoberpf/certmanager-deployment/kubernetes"
+  source            = "/Users/jakoberpf/Code/jakoberpf/terraform/modules/kubernetes/certmanager-deployment" # "jakoberpf/certmanager-deployment/kubernetes"
+
+  deploy_manager    = true
+  deploy_reflector  = true
   cloudflare_tokens = var.cloudflare_tokens
 }
 
 module "zelos_system_service_longhorn" {
-  source = "jakoberpf/longhorn-deployment/kubernetes"
+  source = "/Users/jakoberpf/Code/jakoberpf/terraform/modules/kubernetes/longhorn-deployment" # "jakoberpf/longhorn-deployment/kubernetes"
 
   compartment                = "athena-installer"
   ingress_dns                = var.longhorn_ingress_dns
@@ -22,7 +25,7 @@ module "zelos_system_service_longhorn" {
 }
 
 module "zelos_system_service_monitoring" {
-  source = "jakoberpf/monitoring-deployment/kubernetes"
+  source = "/Users/jakoberpf/Code/jakoberpf/terraform/modules/kubernetes/monitoring-deployment" # "jakoberpf/monitoring-deployment/kubernetes"
 
   compartment           = "athena-installer"
   ingress_dns           = var.grafana_ingress_dns
