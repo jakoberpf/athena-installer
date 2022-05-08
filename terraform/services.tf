@@ -5,9 +5,9 @@ module "zelos_system_service_external_secrets" {
 }
 
 module "zelos_system_service_cert_manager" {
-  depends_on = [
-    module.zelos_system_service_external_secrets
-  ]
+  # depends_on = [
+  #   module.zelos_system_service_external_secrets
+  # ]
 
   source            = "jakoberpf/certmanager-deployment/kubernetes"
 
@@ -35,7 +35,8 @@ module "zelos_system_service_longhorn" {
 
 module "zelos_system_service_monitoring" {
   depends_on = [
-    module.zelos_system_service_cert_manager
+    module.zelos_system_service_cert_manager,
+    module.zelos_system_service_longhorn
   ]
 
   source = "/Users/jakoberpf/Code/jakoberpf/terraform/modules/kubernetes/monitoring-deployment" # "jakoberpf/monitoring-deployment/kubernetes"
