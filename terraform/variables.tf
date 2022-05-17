@@ -9,6 +9,17 @@ variable "cloudflare_tokens" {
   description = "The API tokens for the cloudflare zones"
 }
 
+# ExternalSecrets
+variable "vault_server" {
+  type        = string
+  description = "The Endpoint URL of the Vault"
+}
+
+variable "vault_token" {
+  type        = string
+  description = "The Access Token for the Vault"
+}
+
 # Longhorn
 variable "longhorn_ingress_dns" {
   type        = string
