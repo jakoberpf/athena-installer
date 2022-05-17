@@ -1,17 +1,17 @@
 module "zelos_system_service_external_secrets" {
-  source = "jakoberpf/external-secrets-deployment/kubernetes"
+  source = "/Users/jakoberpf/Code/jakoberpf/terraform/modules/kubernetes/external-secrets-deployment" # "jakoberpf/external-secrets-deployment/kubernetes"
 
   compartment = "athena-installer"
+
+  vault_server = var.vault_server
+  vault_token = var.vault_token
 }
 
 module "zelos_system_service_cert_manager" {
-  # depends_on = [
-  #   module.zelos_system_service_external_secrets
-  # ]
-
   source            = "jakoberpf/certmanager-deployment/kubernetes"
 
   # compartment = "athena-installer"
+  
   deploy_manager    = true # TODO remove and make default
   deploy_reflector  = true # TODO remove and make default
   cloudflare_tokens = var.cloudflare_tokens
@@ -25,6 +25,7 @@ module "zelos_system_service_longhorn" {
   source = "/Users/jakoberpf/Code/jakoberpf/terraform/modules/kubernetes/longhorn-deployment" # "jakoberpf/longhorn-deployment/kubernetes"
 
   compartment                = "athena-installer"
+  
   ingress_dns                = var.longhorn_ingress_dns
   gatekeeper_client_id       = var.longhorn_gatekeeper_client_id
   gatekeeper_client_secret   = var.longhorn_gatekeeper_client_secret
@@ -42,6 +43,7 @@ module "zelos_system_service_monitoring" {
   source = "/Users/jakoberpf/Code/jakoberpf/terraform/modules/kubernetes/monitoring-deployment" # "jakoberpf/monitoring-deployment/kubernetes"
 
   compartment           = "athena-installer"
+
   ingress_dns           = var.grafana_ingress_dns # TODO rename to grafana_ingress_dns
   grafana_adminPassword = var.grafana_adminPassword
   grafana_root_url      = var.grafana_root_url
