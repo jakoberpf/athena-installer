@@ -1,7 +1,3 @@
-all: banner deploy
-
-deploy: vault istio terraform
-
 banner:
 	@echo "#########################################################################"
 	@echo "##                                                                     ##"
@@ -27,6 +23,8 @@ istio:
 terraform: vault
 	@echo "[terraform] Creating cluster system services with terraform"
 	@./bin/terraform.sh
+
+deploy: vault istio terraform
 
 destroy: vault
 	@echo "[bootstrap] Destroying cluster infrastructure"

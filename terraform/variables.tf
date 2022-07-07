@@ -21,6 +21,16 @@ variable "vault_token" {
 }
 
 # Longhorn
+variable "longhorn_aws_access_key_id" {
+  type        = string
+  description = ""
+}
+
+variable "longhorn_aws_secret_access_key" {
+  type        = string
+  description = ""
+}
+
 variable "longhorn_ingress_dns" {
   type        = string
   description = ""
