@@ -1,4 +1,4 @@
-banner:
+banner: # Typo: Allogator2 from https://manytools.org/hacker-tools/ascii-banner/
 	@echo "#########################################################################"
 	@echo "##                                                                     ##"
 	@echo "##      ::: ::::::::::: :::    ::: :::::::::: ::::    :::     :::      ##" 
